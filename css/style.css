@@ -121,3 +121,7 @@ body {
     height: 100%;
     border-radius: 8px; /* Matches container's rounded corners */
 }
+
+.nav-bar-item {
+    padding-top: 30px;
+}
