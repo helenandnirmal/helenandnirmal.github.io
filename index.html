@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helen + Nirmal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/HN.png" type="image/x-icon">
+    <link rel="icon" href="img/HN.png" type="image/x-icon">
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+</head>
+<body class="playfair-display-text">
+    <header class="py-3 bg-red">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-red">
+                <a class="navbar-brand" href="#">Helen + Nirmal</a>
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav"> -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- <li class="nav-item"><a class="nav-link" href="#invitation">Invitation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#our-story">Our Story</a></li> -->
+                        <li class="nav-item"><a class="nav-link" href="https://docs.google.com/presentation/d/1otlYDur3QqItYxROLpezvUUhlgLxIFV2jVjo-bU56j8/edit?usp=sharing" target="_blank">Welcome to Chennai! (Click here)</a></li>
+                    </ul>
+                <!-- </div> -->
+            </nav>
+        </div>
+    </header>
+
+    <section id="invitation" class="invitation text-green">
+        <div class="container text-center" data-aos="fade-up">
+            <h3>"This is the Lord's doing; it is marvelous in our eyes." <br> (Ps 118:23)</h3>
+            
+            <h2 class="display-6 invitation-start">We invite you to celebrate our wedding on</h2>
+            <h1 class="display-3 wedding-date">Saturday, December 28, 2024</h1>
+        </div>
+
+        <div id="countdown" class="container text-center my-5" data-aos="fade-up">
+            <div class="d-flex justify-content-center">
+                <div class="p-3 mx-2">
+                    <h3 id="days" class="display-5">0</h3>
+                    <p>Days</p>
+                </div>
+                <div class="p-3 mx-2">
+                    <h3 id="hours" class="display-5">0</h3>
+                    <p>Hours</p>
+                </div>
+                <div class="p-3 mx-2">
+                    <h3 id="minutes" class="display-5">0</h3>
+                    <p>Minutes</p>
+                </div>
+                <div class="p-3 mx-2">
+                    <h3 id="seconds" class="display-5">0</h3>
+                    <p>Seconds</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-section text-center" data-aos="fade-up">
+           <div class="event-title">Wedding Mass, 10:30AM</div>
+            <div class="event-detail">
+                <strong>National Shrine of St. Thomas Cathedral Basilica</strong><br>
+                38, Santhome High Rd, Mylapore, Chennai, Tamil Nadu 600004
+            </div>
+        </div>
+        <div class="event-section text-center" data-aos="fade-up">
+            <div class="event-title">Lunch Reception to follow</div>
+            <div class="event-detail">
+                <strong>Archdiocesan Pastoral Centre</strong><br>
+                No.25, Rosary Church Road, Mylapore, Chennai, Tamil Nadu 600004
+            </div>
+        </div>
+
+        <!-- <div class="container text-center" > -->
+            <div class="video-container wedding-date" data-aos="fade-up">
+                <video controls>
+                    <source src="vid/our-story.mp4" type="video/mp4">
+                </video>
+            </div>
+        <!-- </div> -->
+    </section>
+
+    <footer class="bg-white py-3 text-center">
+        <div class="container">
+            <p>&copy; 2024 Helen + Nirmal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        // Countdown Timer Script
+        const weddingDate = new Date('December 28, 2024 10:30:00').getTime();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = days;
+            document.getElementById('hours').innerHTML = hours;
+            document.getElementById('minutes').innerHTML = minutes;
+            document.getElementById('seconds').innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById('countdown').innerHTML = 'The wedding has started!';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
