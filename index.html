@@ -30,8 +30,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <!-- <li class="nav-item nav-bar-item"><a class="nav-link" href="#invitation">Invitation</a></li> -->
-                        <!-- <li class="nav-item nav-bar-item"><a class="nav-link" href="#our-story">Our Story</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="https://docs.google.com/presentation/d/1otlYDur3QqItYxROLpezvUUhlgLxIFV2jVjo-bU56j8/edit?usp=sharing" target="_blank">Welcome to Chennai! (Click here)</a></li>
                     </ul>
                 </div>
@@ -43,12 +41,21 @@
         <div class="container text-center" data-aos="fade-up">
             <h3>"This is the Lord's doing; it is marvelous in our eyes." <br> (Ps 118:23)</h3>
             
-            <h2 class="display-6 invitation-start">We invite you to celebrate our wedding on</h2>
+            <h2 id="invitation-text" class="display-6 invitation-start" hidden>We invite you to celebrate our wedding on</h2>
             <h1 class="display-3 wedding-date">Saturday, December 28, 2024</h1>
         </div>
 
         <div id="countdown" class="container text-center my-5" data-aos="fade-up">
+            <h2 id="married-for-text"class="display-6">Married for</h2>
             <div class="d-flex justify-content-center">
+                <div class="p-3 mx-2">
+                    <h3 id="years" class="display-5">0</h3>
+                    <p>Years</p>
+                </div>
+                <div class="p-3 mx-2">
+                    <h3 id="months" class="display-5">0</h3>
+                    <p>Months</p>
+                </div>
                 <div class="p-3 mx-2">
                     <h3 id="days" class="display-5">0</h3>
                     <p>Days</p>
@@ -106,26 +113,48 @@
     </script>
     <script>
         // Countdown Timer Script
-        const weddingDate = new Date('December 28, 2024 10:30:00').getTime();
+        const weddingDate = new Date('December 28, 2024 11:25:00');
 
-        const countdownFunction = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
+        const countUpFunction = setInterval(function() {
+            const now = new Date();
+            
+            // Calculate total difference in milliseconds
+            let years = now.getFullYear() - weddingDate.getFullYear();
+            let months = now.getMonth() - weddingDate.getMonth();
+            let days = now.getDate() - weddingDate.getDate();
+            let hours = now.getHours() - weddingDate.getHours();
+            let minutes = now.getMinutes() - weddingDate.getMinutes();
+            let seconds = now.getSeconds() - weddingDate.getSeconds();
+            
+            // Adjust if negative days, months, etc.
+            if (seconds < 0) {
+                seconds += 60;
+                minutes--;
+            }
+            if (minutes < 0) {
+                minutes += 60;
+                hours--;
+            }
+            if (hours < 0) {
+                hours += 24;
+                days--;
+            }
+            if (days < 0) {
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += prevMonth;
+                months--;
+            }
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+            document.getElementById('years').innerHTML = years;
+            document.getElementById('months').innerHTML = months;
             document.getElementById('days').innerHTML = days;
             document.getElementById('hours').innerHTML = hours;
             document.getElementById('minutes').innerHTML = minutes;
             document.getElementById('seconds').innerHTML = seconds;
-
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById('countdown').innerHTML = 'The wedding has started!';
-            }
         }, 1000);
     </script>
 </body>
