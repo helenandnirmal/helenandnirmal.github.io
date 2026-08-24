@@ -1,161 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
-    
     <title>Helen + Nirmal</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-
-    <link rel="shortcut icon" href="img/HN.png" type="image/x-icon">
-    <link rel="icon" href="img/HN.png" type="image/x-icon">
-    
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- AOS CSS -->
+    <link rel="shortcut icon" href="/img/HN.png" type="image/x-icon" />
+    <link rel="icon" href="/img/HN.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-</head>
-<body class="playfair-display-text">
-    <header class="py-3 bg-red">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-red">
-                <a class="navbar-brand" href="#">Helen + Nirmal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="https://docs.google.com/presentation/d/1otlYDur3QqItYxROLpezvUUhlgLxIFV2jVjo-bU56j8/edit?usp=sharing" target="_blank">Travel to Chennai for the Wedding</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <section id="invitation" class="invitation text-green">
-        <div class="container text-center" data-aos="fade-up">
-            <h3>"This is the Lord's doing; it is marvelous in our eyes." <br> (Ps 118:23)</h3>
-            
-            <h2 id="invitation-text" class="display-6 invitation-start" hidden>We invite you to celebrate our wedding on</h2>
-            <h1 class="display-3 wedding-date">Saturday, December 28, 2024</h1>
-        </div>
-
-        <div id="countdown" class="container text-center my-5" data-aos="fade-up">
-            <h2 id="married-for-text"class="display-6">Married for</h2>
-            <div class="d-flex justify-content-center">
-                <div class="p-3 mx-2">
-                    <h3 id="years" class="display-5">0</h3>
-                    <p>Years</p>
-                </div>
-                <div class="p-3 mx-2">
-                    <h3 id="months" class="display-5">0</h3>
-                    <p>Months</p>
-                </div>
-                <div class="p-3 mx-2">
-                    <h3 id="days" class="display-5">0</h3>
-                    <p>Days</p>
-                </div>
-                <div class="p-3 mx-2">
-                    <h3 id="hours" class="display-5">0</h3>
-                    <p>Hours</p>
-                </div>
-                <!-- <div class="p-3 mx-2">
-                    <h3 id="minutes" class="display-5">0</h3>
-                    <p>Minutes</p>
-                </div>
-                <div class="p-3 mx-2">
-                    <h3 id="seconds" class="display-5">0</h3>
-                    <p>Seconds</p>
-                </div> -->
-            </div>
-        </div>
-
-        <div class="event-section text-center" data-aos="fade-up">
-           <div class="event-title">Wedding Mass, 10:30AM</div>
-            <div class="event-detail">
-                <strong>National Shrine of St. Thomas Cathedral Basilica</strong><br>
-                38, Santhome High Rd, Mylapore, Chennai, Tamil Nadu 600004
-            </div>
-        </div>
-        <div class="event-section text-center" data-aos="fade-up">
-            <div class="event-title">Lunch Reception</div>
-            <div class="event-detail">
-                <strong>Archdiocesan Pastoral Centre</strong><br>
-                No.25, Rosary Church Road, Mylapore, Chennai, Tamil Nadu 600004
-            </div>
-        </div>
-
-        <!-- <div class="container text-center" > -->
-            <div class="video-container wedding-date" data-aos="fade-up">
-                <video controls>
-                    <source src="vid/our-story.mp4" type="video/mp4">
-                </video>
-            </div>
-        <!-- </div> -->
-    </section>
-
-    <footer class="bg-white py-3 text-center">
-        <div class="container">
-            <p>&copy; 2024 Helen + Nirmal. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- AOS JS -->
+  </head>
+  <body>
+    <div id="root"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-    <script>
-        // Countdown Timer Script
-        const weddingDate = new Date('December 28, 2024 11:25:00');
-
-        const countUpFunction = setInterval(function() {
-            const now = new Date();
-            
-            // Calculate total difference in milliseconds
-            let years = now.getFullYear() - weddingDate.getFullYear();
-            let months = now.getMonth() - weddingDate.getMonth();
-            let days = now.getDate() - weddingDate.getDate();
-            let hours = now.getHours() - weddingDate.getHours();
-            let minutes = now.getMinutes() - weddingDate.getMinutes();
-            let seconds = now.getSeconds() - weddingDate.getSeconds();
-            
-            // Adjust if negative days, months, etc.
-            if (seconds < 0) {
-                seconds += 60;
-                minutes--;
-            }
-            if (minutes < 0) {
-                minutes += 60;
-                hours--;
-            }
-            if (hours < 0) {
-                hours += 24;
-                days--;
-            }
-            if (days < 0) {
-                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-                days += prevMonth;
-                months--;
-            }
-            if (months < 0) {
-                months += 12;
-                years--;
-            }
-
-            document.getElementById('years').innerHTML = years;
-            document.getElementById('months').innerHTML = months;
-            document.getElementById('days').innerHTML = days;
-            document.getElementById('hours').innerHTML = hours;
-            // document.getElementById('minutes').innerHTML = minutes;
-            // document.getElementById('seconds').innerHTML = seconds;
-        }, 1000);
-    </script>
-</body>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
