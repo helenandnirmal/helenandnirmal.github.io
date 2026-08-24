@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Header from './Header'
-import Footer from '../../components/Footer'
+import Footer from './Footer'
 import Countdown from '../../components/Countdown'
 import EventSection from '../../components/EventSection'
 import './HomePage.css'
