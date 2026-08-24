@@ -60,25 +60,25 @@ function Countdown() {
           <h3 id="years" className="display-5">
             {timeParts.years}
           </h3>
-          <p>Years</p>
+          <p>{timeParts.years === 1 ? 'Year' : 'Years'}</p>
         </div>
         <div className="count-box">
           <h3 id="months" className="display-5">
             {timeParts.months}
           </h3>
-          <p>Months</p>
+          <p>{timeParts.months === 1 ? 'Month' : 'Months'}</p>
         </div>
         <div className="count-box">
           <h3 id="days" className="display-5">
             {timeParts.days}
           </h3>
-          <p>Days</p>
+          <p>{timeParts.days === 1 ? 'Day' : 'Days'}</p>
         </div>
         <div className="count-box">
           <h3 id="hours" className="display-5">
             {timeParts.hours}
           </h3>
-          <p>Hours</p>
+          <p>{timeParts.hours === 1 ? 'Hour' : 'Hours'}</p>
         </div>
       </div>
     </div>
