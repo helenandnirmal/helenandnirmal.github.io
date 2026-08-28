@@ -3,7 +3,7 @@ import EventSection from '../../components/EventSection'
 import './BabyOnePage.css'
 
 const API_URL = import.meta.env.VITE_INVITE_API_URL ||
-  'https://script.google.com/macros/s/AKfycbwn5VzXyeyb22PVU1f8ZL0SweDWhQU5TiZV4bqa70KPfYeJKD2ST4GmpCwT0qfKi8s/exec'
+  'https://script.google.com/macros/s/AKfycby73ZU-6XbjBZ2bGcXKmt2thnV-hluqeT5NwWxKy6KMmgJYFRAKV2sF40OFoS7bOEfk/exec'
 
 function BabyOnePage() {
   const [firstName, setFirstName] = useState('')
@@ -253,7 +253,7 @@ function BabyOnePage() {
               <EventSection
                 title="Lunch Reception on November 28, 2026 at 1pm"
                 details={[
-                  '19121 112th Ave NE, Bothell WA 98011',
+                  '19121 112th Ave NE, Bothell, WA 98011',
                   'Street parking is available, as well as parking next to the nearby retail shops.',
                   'Enter code 920257 after pressing the Delivery button on the intercom to access the building and proceed to the 3rd floor.',
                 ]}
@@ -391,7 +391,7 @@ function createCalendarFile() {
       start: '20261128T210000Z',
       end: '20261128T230000Z',
       summary: 'Lunch Reception for Baptism of Francis Noel Benann',
-      location: '19121 112th Ave NE, Bothell WA 98011',
+      location: '19121 112th Ave NE, Bothell, WA 98011',
       description: 'Street parking is available, as well as parking next to the nearby retail shops. Enter code 920257 after pressing the Delivery button on the intercom to access the building and proceed to the 3rd floor.',
     }),
     'END:VCALENDAR',
