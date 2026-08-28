@@ -3,7 +3,7 @@ import EventSection from '../../components/EventSection'
 import './BabyOnePage.css'
 
 const API_URL = import.meta.env.VITE_INVITE_API_URL ||
-  'https://script.google.com/macros/s/AKfycbx4pGzQ-2tQC9lM1DHpoOIVq0gxdVRoMdxUO4X9WnShMlb9GuOCfdkt609PSA3Zjhuy/exec'
+  'https://script.google.com/macros/s/AKfycbwn5VzXyeyb22PVU1f8ZL0SweDWhQU5TiZV4bqa70KPfYeJKD2ST4GmpCwT0qfKi8s/exec'
 
 function BabyOnePage() {
   const [firstName, setFirstName] = useState('')
@@ -293,7 +293,7 @@ function BabyOnePage() {
                 </button>
                 <button
                   type="button"
-                  className="baby-submit baby-submit-secondary"
+                  className="baby-submit baby-submit-secondary calendar-button-hidden"
                   onClick={handleCalendarDownload}
                   disabled={isSubmitting}
                 >

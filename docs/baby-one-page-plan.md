@@ -203,7 +203,7 @@ Body:
 }
 ```
 
-The Apps Script must revalidate `name + passcode` before sending. It should send the event details for both November 28, 2026 events in an HTML email and return:
+The Apps Script must revalidate `name + passcode` before sending. It should send the event details for both November 28, 2026 events in an HTML email and attach one `.ics` file containing both events. The Apps Script project must be authorized for the `script.send_mail` scope. It returns:
 
 ```json
 {
@@ -531,6 +531,9 @@ function sendInviteEmail(name, passcode, email) {
       subject,
       body: plainText,
       htmlBody: createInviteEmailHtml(people),
+      attachments: [
+        createCalendarAttachment(),
+      ],
     });
   } catch (error) {
     console.error(error);
@@ -568,6 +571,47 @@ function createInviteEmailHtml(people) {
         <p style="font-size:18px;font-style:italic;">With love, we kindly request no gifts. Your presence and blessings are what matter most to us.</p>
       </div>
     </div>`;
+}
+
+function createCalendarAttachment() {
+  const calendar = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Helen and Nirmal//Francis Noel Baptism//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    'UID:francis-noel-baptism-20261128@helenandnirmal.github.io',
+    `DTSTAMP:${getCalendarTimestamp()}`,
+    'DTSTART:20261128T190000Z',
+    'DTEND:20261128T200000Z',
+    'SUMMARY:Baptism of Francis Noel Benann',
+    'LOCATION:St. Elizabeth Ann Seton Catholic Church\\, 2316 180th St SE\\, Bothell\\, WA 98012',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'UID:francis-noel-reception-20261128@helenandnirmal.github.io',
+    `DTSTAMP:${getCalendarTimestamp()}`,
+    'DTSTART:20261128T210000Z',
+    'DTEND:20261128T230000Z',
+    'SUMMARY:Lunch Reception for Baptism of Francis Noel Benann',
+    'LOCATION:19121 112th Ave NE\\, Bothell WA 98011',
+    'DESCRIPTION:Street parking is available\\, as well as parking next to the nearby retail shops. Enter code 920257 after pressing the Delivery button on the intercom to access the building and proceed to the 3rd floor.',
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n');
+
+  return Utilities.newBlob(
+    calendar,
+    'text/calendar',
+    'francis-noel-benann-baptism.ics',
+  );
+}
+
+function getCalendarTimestamp() {
+  return new Date()
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace(/\.\d{3}/, '');
 }
 
 function escapeHtml(value) {

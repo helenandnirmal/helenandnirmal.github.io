@@ -216,6 +216,10 @@
   background: rgba(185, 31, 28, 0.08);
 }
 
+.calendar-button-hidden {
+  display: none;
+}
+
 .form-message {
   margin: 1rem 0 0;
   font-size: 1.25rem;
@@ -242,7 +246,7 @@
 }
 
 .email-dialog {
-  background: #f7f5ef url('/img/website-bg.png') center / cover;
+  background: #f7f5ef;
   border: 2px solid #b91f1c;
   border-radius: 10px;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.25);
