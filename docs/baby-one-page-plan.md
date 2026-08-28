@@ -58,9 +58,10 @@ The page should contain:
    - Show `Accept` and `Decline` radio buttons for each person.
 
 6. Lunch Reception event box:
-   - Address: `19121 112th Ave NE, 3rd floor, Bothell WA 98011`
-   - Time: `12:30pm`
-   - Entry code: `XXXXXX`
+  - Address: `19121 112th Ave NE, Bothell WA 98011`
+  - Time: `1pm`
+  - Parking: Street parking is available, as well as parking next to the nearby retail shops.
+  - Entry instructions: Enter code `920257` after pressing the Delivery button on the intercom to access the building and proceed to the 3rd floor.
    - List the same people.
    - Show `Accept` and `Decline` radio buttons for each person.
 
@@ -517,8 +518,11 @@ function sendInviteEmail(name, passcode, email) {
     '2316 180th St SE, Bothell, WA 98012',
     '',
     'Lunch Reception on November 28, 2026 at 1:00 PM Pacific Time',
-    '19121 112th Ave NE, 3rd floor, Bothell WA 98011',
-    'Enter code 920257 after pressing the Delivery button on the intercom to access the building.',
+    '19121 112th Ave NE, Bothell WA 98011',
+    'Street parking is available, as well as parking next to the nearby retail shops.',
+    'Enter code 920257 after pressing the Delivery button on the intercom to access the building and proceed to the 3rd floor.',
+    '',
+    'With love, we kindly request no gifts. Your presence and blessings are what matter most to us.',
   ].join('\n');
 
   try {
@@ -560,7 +564,8 @@ function createInviteEmailHtml(people) {
         <h2 style="font-size:20px;">Baptism on November 28, 2026 at 11:00 AM Pacific Time</h2>
         <p style="font-size:18px;">St. Elizabeth Ann Seton Catholic Church<br>2316 180th St SE, Bothell, WA 98012</p>
         <h2 style="font-size:20px;">Lunch Reception on November 28, 2026 at 1:00 PM Pacific Time</h2>
-        <p style="font-size:18px;">19121 112th Ave NE, 3rd floor, Bothell WA 98011<br>Enter code 920257 after pressing the Delivery button on the intercom to access the building.</p>
+        <p style="font-size:18px;">19121 112th Ave NE, Bothell WA 98011<br>Street parking is available, as well as parking next to the nearby retail shops.<br>Enter code 920257 after pressing the Delivery button on the intercom to access the building and proceed to the 3rd floor.</p>
+        <p style="font-size:18px;font-style:italic;">With love, we kindly request no gifts. Your presence and blessings are what matter most to us.</p>
       </div>
     </div>`;
 }
