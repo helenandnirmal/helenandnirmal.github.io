@@ -73,6 +73,17 @@
   margin-bottom: 2rem;
 }
 
+.baby-verse {
+  font-size: 1.75em;
+  font-style: italic;
+  margin: 0;
+}
+
+.baby-verse-reference {
+  font-size: 1.5em;
+  letter-spacing: 1px;
+}
+
 .baby-eyebrow {
   color: #b91f1c;
   font-size: 1.25rem;

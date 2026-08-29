@@ -191,6 +191,10 @@ function BabyOnePage() {
           </nav>
 
           <header className="baby-heading">
+              <p className="baby-verse">
+                "For this child I prayed; <br />and the Lord has granted me my petition which I made to Him."
+              </p>
+              <p className="baby-verse-reference">1 Samuel 1:27</p>
             <p className="baby-eyebrow">You are invited to celebrate the</p>
             <h1>Baptism of Francis Noel Benann</h1>
           </header>
