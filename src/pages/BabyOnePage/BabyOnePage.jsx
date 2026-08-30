@@ -3,7 +3,7 @@ import EventSection from '../../components/EventSection'
 import './BabyOnePage.css'
 
 const API_URL = import.meta.env.VITE_INVITE_API_URL ||
-  'https://script.google.com/macros/s/AKfycbwDO7vnVitRNrhJpYUw0emu4nnLLsFmw5yagQ50i10--BBi7RixHvs-hI0k8IXGWQjC/exec'
+  'https://script.google.com/macros/s/AKfycbzb-lSIwRaM7DSrVWGMA4rTjjpyxj9W3rtkoQWgRNaJXaAInI1eEy-nL-DX5eyawCQx/exec'
 
 function BabyOnePage() {
   const [firstName, setFirstName] = useState('')
@@ -156,17 +156,6 @@ function BabyOnePage() {
     }
   }
 
-  function handleCalendarDownload() {
-    const calendar = createCalendarFile()
-    const blob = new Blob([calendar], { type: 'text/calendar;charset=utf-8' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'francis-noel-benann-baptism.ics'
-    link.click()
-    URL.revokeObjectURL(url)
-  }
-
   const isLookingUp = lookupState === 'loading'
   const isSubmitting = submitState === 'submitting'
   const hasCompleteResponses = invite?.people.every((person) => {
@@ -239,7 +228,7 @@ function BabyOnePage() {
           {invite && (
             <form ref={rsvpFormRef} className="rsvp-form rsvp-form-reveal" onSubmit={handleSubmit}>
               <EventSection
-                title="Baptism on November 28, 2026 at 11am"
+                title="Baptism Ceremony on November 28, 2026 at 11am"
                 details={[
                   <strong key="baptism-church">St. Elizabeth Ann Seton Catholic Church</strong>,
                   '2316 180th St SE, Bothell, WA 98012',
@@ -295,14 +284,6 @@ function BabyOnePage() {
                   disabled={isSubmitting}
                 >
                   Email me these details
-                </button>
-                <button
-                  type="button"
-                  className="baby-submit baby-submit-secondary calendar-button-hidden"
-                  onClick={handleCalendarDownload}
-                  disabled={isSubmitting}
-                >
-                  Add to my Calendar
                 </button>
               </div>
 
@@ -375,54 +356,6 @@ function BabyOnePage() {
         )}
     </main>
   )
-}
-
-function createCalendarFile() {
-  return [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Helen and Nirmal//Francis Noel Baptism//EN',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    createCalendarEvent({
-      uid: 'francis-noel-baptism-20261128@helenandnirmal.github.io',
-      start: '20261128T190000Z',
-      end: '20261128T200000Z',
-      summary: 'Baptism of Francis Noel Benann',
-      location: 'St. Elizabeth Ann Seton Catholic Church, 2316 180th St SE, Bothell, WA 98012',
-    }),
-    createCalendarEvent({
-      uid: 'francis-noel-reception-20261128@helenandnirmal.github.io',
-      start: '20261128T210000Z',
-      end: '20261128T230000Z',
-      summary: 'Lunch Reception for Baptism of Francis Noel Benann',
-      location: 'The Villas at Beardslee, 19121 112th Ave NE, Bothell, WA 98011',
-      description: 'Street parking is available, as well as parking next to the nearby retail shops. Enter code 920257 after pressing the Delivery button on the intercom to access the building and proceed to the 3rd floor.',
-    }),
-    'END:VCALENDAR',
-  ].join('\r\n')
-}
-
-function createCalendarEvent({ uid, start, end, summary, location, description = '' }) {
-  return [
-    'BEGIN:VEVENT',
-    `UID:${uid}`,
-    `DTSTAMP:${getCalendarTimestamp()}`,
-    `DTSTART:${start}`,
-    `DTEND:${end}`,
-    `SUMMARY:${escapeCalendarText(summary)}`,
-    `LOCATION:${escapeCalendarText(location)}`,
-    description && `DESCRIPTION:${escapeCalendarText(description)}`,
-    'END:VEVENT',
-  ].filter(Boolean).join('\r\n')
-}
-
-function getCalendarTimestamp() {
-  return new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
-}
-
-function escapeCalendarText(value) {
-  return value.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n')
 }
 
 function RsvpList({ people, responses, eventName, disabled, onChange }) {
