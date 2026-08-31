@@ -513,7 +513,7 @@ function sendInviteEmail(name, passcode, email) {
     '',
     `Guests: ${people}`,
     '',
-    'Baptism on November 28, 2026 at 11:00 AM Pacific Time',
+    'Baptism Ceremony on November 28, 2026 at 11:00 AM Pacific Time',
     'St. Elizabeth Ann Seton Catholic Church',
     '2316 180th St SE, Bothell, WA 98012',
     '',
@@ -564,7 +564,7 @@ function createInviteEmailHtml(people) {
         <p style="color:#b91f1c;text-transform:uppercase;letter-spacing:1px;font-size:20px;">You are invited to celebrate the</p>
         <h1 style="font-size:28px;margin:0 0 20px;">Baptism of Francis Noel Benann</h1>
         <p style="font-size:18px;"><strong>Guests:</strong> ${escapeHtml(people)}</p>
-        <h2 style="font-size:20px;">Baptism on November 28, 2026 at 11:00 AM Pacific Time</h2>
+        <h2 style="font-size:20px;">Baptism Ceremony on November 28, 2026 at 11:00 AM Pacific Time</h2>
         <p style="font-size:18px;">St. Elizabeth Ann Seton Catholic Church<br>2316 180th St SE, Bothell, WA 98012</p>
         <h2 style="font-size:20px;">Lunch Reception on November 28, 2026 at 1:00 PM Pacific Time</h2>
         <p style="font-size:18px;">
