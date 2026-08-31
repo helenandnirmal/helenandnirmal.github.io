@@ -112,8 +112,8 @@ function BabyOnePage() {
           passcode,
           responses: invite.people.map((person) => ({
             id: Number(person.id),
-            baptismRsvp: responses[person.id]?.baptismRsvp ? 1 : 0,
-            receptionRsvp: responses[person.id]?.receptionRsvp ? 1 : 0,
+            baptismRsvp: responses[person.id]?.baptismRsvp,
+            receptionRsvp: responses[person.id]?.receptionRsvp,
           })),
         }),
       })
