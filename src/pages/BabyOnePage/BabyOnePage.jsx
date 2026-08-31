@@ -93,7 +93,7 @@ function BabyOnePage() {
       ...current,
       [id]: {
         ...current[id],
-        [eventName]: value === 'true',
+        [eventName]: value === 'true' ? 1 : 0,
       },
     }))
   }
@@ -160,8 +160,9 @@ function BabyOnePage() {
   const isSubmitting = submitState === 'submitting'
   const hasCompleteResponses = invite?.people.every((person) => {
     const response = responses[person.id]
-    return typeof response?.baptismRsvp === 'boolean' &&
-      typeof response?.receptionRsvp === 'boolean'
+
+    return (response?.baptismRsvp === 0 || response?.baptismRsvp === 1) &&
+          (response?.receptionRsvp === 0 || response?.receptionRsvp === 1)
   })
 
   return (
@@ -369,7 +370,7 @@ function RsvpList({ people, responses, eventName, disabled, onChange }) {
               type="radio"
               name={`${eventName}-${person.id}`}
               value="true"
-              checked={responses[person.id]?.[eventName] === true}
+              checked={responses[person.id]?.[eventName] === 1}
               onChange={(event) => onChange(person.id, eventName, event.target.value)}
               disabled={disabled}
               required
@@ -381,7 +382,7 @@ function RsvpList({ people, responses, eventName, disabled, onChange }) {
               type="radio"
               name={`${eventName}-${person.id}`}
               value="false"
-              checked={responses[person.id]?.[eventName] === false}
+              checked={responses[person.id]?.[eventName] === 0}
               onChange={(event) => onChange(person.id, eventName, event.target.value)}
               disabled={disabled}
               required
