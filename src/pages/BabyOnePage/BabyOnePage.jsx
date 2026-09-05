@@ -110,11 +110,9 @@ function BabyOnePage() {
           action: 'saveRsvp',
           name: firstName,
           passcode,
-          responses: invite.people.map((person) => ({
-            id: Number(person.id),
-            baptismRsvp: responses[person.id]?.baptismRsvp,
-            receptionRsvp: responses[person.id]?.receptionRsvp,
-          })),
+          responses: invite.people
+            .map((person) => createRsvpResponse(person.id, responses[person.id]))
+            .filter((response) => response.baptismRsvp !== undefined || response.receptionRsvp !== undefined),
         }),
       })
       const result = await response.json()
@@ -158,11 +156,10 @@ function BabyOnePage() {
 
   const isLookingUp = lookupState === 'loading'
   const isSubmitting = submitState === 'submitting'
-  const hasCompleteResponses = invite?.people.every((person) => {
+  const hasResponsesToSubmit = invite?.people.some((person) => {
     const response = responses[person.id]
-
-    return (response?.baptismRsvp === 0 || response?.baptismRsvp === 1) &&
-          (response?.receptionRsvp === 0 || response?.receptionRsvp === 1)
+    return response?.baptismRsvp === 0 || response?.baptismRsvp === 1 ||
+      response?.receptionRsvp === 0 || response?.receptionRsvp === 1
   })
 
   return (
@@ -269,7 +266,7 @@ function BabyOnePage() {
               <button
                 type="submit"
                 className="baby-submit baby-submit-confirm"
-                disabled={isSubmitting || !hasCompleteResponses}
+                disabled={isSubmitting || !hasResponsesToSubmit}
               >
                 {isSubmitting ? 'Saving RSVP...' : 'Submit RSVP'}
               </button>
@@ -359,6 +356,18 @@ function BabyOnePage() {
   )
 }
 
+function createRsvpResponse(id, response = {}) {
+  return {
+    id: Number(id),
+    ...(response.baptismRsvp === 0 || response.baptismRsvp === 1
+      ? { baptismRsvp: response.baptismRsvp }
+      : {}),
+    ...(response.receptionRsvp === 0 || response.receptionRsvp === 1
+      ? { receptionRsvp: response.receptionRsvp }
+      : {}),
+  }
+}
+
 function RsvpList({ people, responses, eventName, disabled, onChange }) {
   return (
     <fieldset className="rsvp-list">
@@ -373,7 +382,6 @@ function RsvpList({ people, responses, eventName, disabled, onChange }) {
               checked={responses[person.id]?.[eventName] === 1}
               onChange={(event) => onChange(person.id, eventName, event.target.value)}
               disabled={disabled}
-              required
             />
             Accept
           </label>
@@ -385,7 +393,6 @@ function RsvpList({ people, responses, eventName, disabled, onChange }) {
               checked={responses[person.id]?.[eventName] === 0}
               onChange={(event) => onChange(person.id, eventName, event.target.value)}
               disabled={disabled}
-              required
             />
             Decline
           </label>

@@ -263,9 +263,11 @@ Processing:
 3. Re-validate `name + passcode` against the sheet. Do not trust the earlier GET request or client state.
 4. Resolve the authenticated group from the validated name.
 5. Ensure every submitted ID belongs to that group.
-6. Validate every RSVP value as a number: `1` for Accept or `0` for Decline.
-7. Update `Baptism RSVP` and `Reception RSVP` by matching `ID`, never by array position or name alone.
-8. Return success only after all requested rows have been updated.
+6. Validate every provided RSVP value as a number: `1` for Accept or `0` for Decline.
+7. Allow partial responses. A response may include `baptismRsvp`, `receptionRsvp`, or both, but must include at least one RSVP field.
+8. Update only the RSVP columns included in each response. Omitted fields must remain unchanged in the sheet.
+9. Update rows by matching `ID`, never by array position or name alone.
+10. Return success only after all requested fields have been updated.
 
 Success response:
 
@@ -398,10 +400,14 @@ function doPost(e) {
     );
 
     for (const response of responses) {
+      const hasBaptismRsvp = response.baptismRsvp !== undefined;
+      const hasReceptionRsvp = response.receptionRsvp !== undefined;
+
       if (
         !groupIds.has(String(response.id)) ||
-        !isValidRsvp(response.baptismRsvp) ||
-        !isValidRsvp(response.receptionRsvp)
+        (!hasBaptismRsvp && !hasReceptionRsvp) ||
+        (hasBaptismRsvp && !isValidRsvp(response.baptismRsvp)) ||
+        (hasReceptionRsvp && !isValidRsvp(response.receptionRsvp))
       ) {
         return json({ success: false, error: 'INVALID_RSVP' });
       }
@@ -412,13 +418,17 @@ function doPost(e) {
         row => String(row.ID) === String(response.id),
       );
 
-      sheetData.sheet
-        .getRange(matchingRow.rowNumber, sheetData.columns['Baptism RSVP'] + 1)
-        .setValue(response.baptismRsvp);
+      if (response.baptismRsvp !== undefined) {
+        sheetData.sheet
+          .getRange(matchingRow.rowNumber, sheetData.columns['Baptism RSVP'] + 1)
+          .setValue(response.baptismRsvp);
+      }
 
-      sheetData.sheet
-        .getRange(matchingRow.rowNumber, sheetData.columns['Reception RSVP'] + 1)
-        .setValue(response.receptionRsvp);
+      if (response.receptionRsvp !== undefined) {
+        sheetData.sheet
+          .getRange(matchingRow.rowNumber, sheetData.columns['Reception RSVP'] + 1)
+          .setValue(response.receptionRsvp);
+      }
     }
 
     return json({ success: true, message: 'RSVP saved' });
