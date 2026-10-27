@@ -3,7 +3,7 @@ import EventSection from '../../components/EventSection'
 import './BabyOnePage.css'
 
 const API_URL = import.meta.env.VITE_INVITE_API_URL ||
-  'https://script.google.com/macros/s/AKfycbyEp48avzQIWrDMXSBEVXv95zCc_trHZnAyadJHtEEJoaFsgLhTrwSRw7flhL6kX-cU/exec'
+  'https://script.google.com/macros/s/AKfycbyeYsNBAgQ3KP7ARDkAfaMSqApJFzTclnpdUbqJgXjs7UCGZeh8gmD8KRmcTwS8eLQ/exec'
 
 function BabyOnePage() {
   const [firstName, setFirstName] = useState('')
