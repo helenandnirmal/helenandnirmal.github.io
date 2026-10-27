@@ -247,7 +247,7 @@ function BabyOnePage() {
                   <strong key="baptism-church">The Villas at Beardslee</strong>,
                   '19121 112th Ave NE, Bothell, WA 98011',
                   'Street parking is available, as well as parking next to the nearby retail shops.',
-                  'Enter code 920257 after pressing the Delivery button on the intercom to access the building and proceed to the 3rd floor.',
+                  'Please look up Nirmal Benann or Helen Dominic in the intercom directory. Once the building door is unlocked, proceed to the 3rd floor.',
                 ]}
               >
                 <RsvpList
